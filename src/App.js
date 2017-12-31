@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import ShopButton from './ShopButton';
+import Score from './Score';
+import CodeDisplay from './CodeDisplay';
 
 class App extends Component {
   constructor(props) {
@@ -25,8 +27,12 @@ class App extends Component {
     const upgrades = [
       {title:"visualizer", cost:"5"},
       {title:"timer",cost:"10"},
-      {title:"improveClicks1",cost:"50"},
-      {title:"scoreHeader",cost:"100"}
+      {title:"improveClicks1", cost:"50"},
+      {title:"scoreHeader", cost:"100"},
+      {title:"displayCode", cost:"30"},
+      {title:"improveTimer1", cost:"50"},
+      {title:"upgradesHeader", cost:"80"},
+      {title:"someStyling1", cost:"80"}
     ];
     return upgrades.map(this.createShopButton);
   }
@@ -34,11 +40,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-       <button name="incrementor" onClick={this.increaseScore}>Click Me</button>
-       <div id="upgrades">
-        {this.createShopButtons()}
-      </div>
-       <Score visualizer={this.state.visualizer} score={this.state.score} headerBought={this.state.scoreHeader}/>
+         <div id="clicker">
+          <h3>Clicker</h3>
+          <button name="incrementor" onClick={this.increaseScore}>Click Me</button>
+         </div>
+         <div id="upgrades">
+          {this.state.upgradesHeader === true ? <h3 className="header">Upgrades</h3>: ''}
+          {this.createShopButtons()}
+         </div>
+         <div id="scores">
+           <Score visualizer={this.state.visualizer} score={this.state.score} headerBought={this.state.scoreHeader}/>
+           <CodeDisplay 
+            displayCode={this.state.displayCode} 
+            clickBase={this.state.clickBase} 
+            timerBase={this.state.timerBase} 
+            timerInterval={this.state.timerInterval} 
+            timerBought={this.state.timer}/>
+          </div>
       </div>
     );
   }
@@ -52,8 +70,13 @@ class App extends Component {
     }
 
     if (upgrade === "improveClicks1") {
-      this.setState({clickBase: 2})
+      this.setState({clickBase: 5})
     }
+
+    if (upgrade === "improveTimer1") {
+      this.setState({timerBase: 10})
+    }
+
 
     this.setState (state);
   }
@@ -67,21 +90,6 @@ class App extends Component {
     setInterval(()=> {this.setState({score: this.state.score + this.state.timerBase})},this.state.timerInterval); 
   }
 
-}
-
-class Score extends Component {
-  
-  render() {
-    if (!this.props.visualizer) {
-      return null;
-    }
-    
-    return (
-      <div>
-      {this.props.headerBought === true ? <h3 className="header">Score</h3>: ''}
-      <p>{this.props.score}</p>
-    </div>);
-  }
 }
 
 export default App;

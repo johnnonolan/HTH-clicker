@@ -6,13 +6,17 @@ class CodeDisplay extends Component {
         return null;
       }
       
+      let increaseScoreCode = `  score += ${this.props.clickBase};`;
+      if (this.props.loopBought) {
+        increaseScoreCode = ` for ( i = 0; i < 10; i++) \u007B \n     score += ${this.props.clickBase}; \n  \u007D;`
+      }
       return(
         <div>
         <figure>
         <figcaption>Your clicks</figcaption>
           <code>
           <pre>
-            increaseScore(() => {"\u007B"} <br/> score+= {this.props.clickBase};<br/>{"\u007D"});
+            increaseScore(() => {"\u007B"} <br/> {increaseScoreCode} <br/>{"\u007D"});
             </pre>  
           </code>
         </figure>

@@ -6,8 +6,8 @@
 
 ### Todo list
 
-  - code display div
-  - saving
+  - code display div - done
+  - saving - done
   - big numbers
   - the twist
   - prestige?

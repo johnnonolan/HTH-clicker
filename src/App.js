@@ -11,7 +11,7 @@ class App extends Component {
     if (storedState) {
       this.state = storedState;
     } else {
-      this.state = {score: 0, timerBase: 1, timerInterval: 5000, clickBase: 1};
+      this.state = {score: 0, timerBase: 1, timerInterval: 5000, clickBase: 1, loopbase: 1};
     }
     this.increaseScore = this.increaseScore.bind(this);
     this.createShopButton = this.createShopButton.bind(this);
@@ -32,14 +32,15 @@ class App extends Component {
   createShopButtons() {
     const upgrades = [
       {title:"visualizer", cost:"5"},
-      {title:"timer",cost:"10"},
+      {title:"timer",cost:"30"},
       {title:"improveClicks1", cost:"50"},
       {title:"scoreHeader", cost:"100"},
-      {title:"displayCode", cost:"30"},
+      {title:"displayCode", cost:"10"},
       {title:"improveTimer1", cost:"50"},
       {title:"upgradesHeader", cost:"80"},
       {title:"someStyling1", cost:"40"},
-      {title:"localSave", cost:"120"}
+      {title:"localSave", cost:"120"},
+      {title:"loop", cost:"150"}
     ];
     return upgrades.map(this.createShopButton);
   }
@@ -63,7 +64,8 @@ class App extends Component {
             clickBase={this.state.clickBase} 
             timerBase={this.state.timerBase} 
             timerInterval={this.state.timerInterval} 
-            timerBought={this.state.timer}/>
+            timerBought={this.state.timer}
+            loopBought={this.state.loop}/>
           </div>
       </div>
     );
@@ -85,6 +87,10 @@ class App extends Component {
       this.setState({timerBase: 10}, this.save())
     }
 
+    if (upgrade === "loop") {
+      this.setState({loopbase: 10}, this.save())
+    }
+
     this.setState (state, this.save());
   }
 
@@ -96,7 +102,7 @@ class App extends Component {
 
   increaseScore(e) {
     e.preventDefault();
-    this.setState ({score : this.state.score + this.state.clickBase}, this.save());
+    this.setState ({score : this.state.score + (this.state.clickBase * this.state.loopbase)}, this.save());
   }
 
   timerOn() {

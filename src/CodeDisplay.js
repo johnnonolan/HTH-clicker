@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import fs from 'fs';
 
 class CodeDisplay extends Component {
     render() {
       if (!this.props.displayCode) {
         return null;
       }
-      
+
       let increaseScoreCode = `  score += ${this.props.clickBase};`;
       if (this.props.loopBought) {
         increaseScoreCode = ` for ( i = 0; i < 10; i++) \u007B \n     score += ${this.props.clickBase}; \n  \u007D;`
@@ -18,7 +17,7 @@ class CodeDisplay extends Component {
           <code>
           <pre>
             increaseScore(() => {"\u007B"} <br/> {increaseScoreCode} <br/>{"\u007D"});
-            </pre>  
+            </pre>
           </code>
         </figure>
         <CodeDisplayTimer timerBought={this.props.timerBought} timerBase={this.props.timerBase} timerInterval={this.props.timerInterval} />
@@ -27,23 +26,23 @@ class CodeDisplay extends Component {
         )
     }
   }
-  
+
   class CodeDisplayTimer extends Component {
     render() {
-  
+
       if(!this.props.timerBought) {
         return null;
       }
-  
+
       return (
-      <figure>  
+      <figure>
       <figcaption>Your timer</figcaption>
       <code>
       <pre>
-        setInterval(()=> {"\u007B"} score += {this.props.timerBase}, {this.props.timerInterval}){"\u007D"}); 
-      </pre>  
+        setInterval(()=> {"\u007B"} score += {this.props.timerBase}, {this.props.timerInterval}){"\u007D"});
+      </pre>
       </code>
-      </figure>)      
+      </figure>)
     }
   }
 
@@ -55,16 +54,16 @@ class CodeDisplay extends Component {
       }
 
       return (
-        <figure>  
+        <figure>
           <figcaption>Your CSS</figcaption>
           <code>
             <pre>
-              .App {"\u007B"} 
+              .App {"\u007B"}
                 <br />
                 &nbsp;&nbsp;display: flex
                 <br />
-              {"\u007D"}); 
-            </pre>  
+              {"\u007D"});
+            </pre>
             </code>
         </figure>
       )

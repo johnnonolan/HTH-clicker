@@ -40,7 +40,8 @@ class App extends Component {
       {title:"upgradesHeader", cost:"80"},
       {title:"someStyling1", cost:"40"},
       {title:"localSave", cost:"120"},
-      {title:"loop", cost:"150"}
+      {title:"loop", cost:"150"},
+      {title:"showCSS", cost:"300"}
     ];
     return upgrades.map(this.createShopButton);
   }
@@ -65,7 +66,8 @@ class App extends Component {
             timerBase={this.state.timerBase} 
             timerInterval={this.state.timerInterval} 
             timerBought={this.state.timer}
-            loopBought={this.state.loop}/>
+            loopBought={this.state.loop}
+            cssBought={this.state.showCSS}/>
           </div>
       </div>
     );

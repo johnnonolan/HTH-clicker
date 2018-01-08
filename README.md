@@ -15,3 +15,4 @@
   - sound
   - a better narrative
   - tests
+  - todo list

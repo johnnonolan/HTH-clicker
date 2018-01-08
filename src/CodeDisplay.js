@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import fs from 'fs';
 
 class CodeDisplay extends Component {
     render() {
@@ -21,6 +22,7 @@ class CodeDisplay extends Component {
           </code>
         </figure>
         <CodeDisplayTimer timerBought={this.props.timerBought} timerBase={this.props.timerBase} timerInterval={this.props.timerInterval} />
+        <CSSDisplay bought={this.props.cssBought} />
         </div>
         )
     }
@@ -42,6 +44,31 @@ class CodeDisplay extends Component {
       </pre>  
       </code>
       </figure>)      
+    }
+  }
+
+  class CSSDisplay extends Component {
+    render() {
+
+      if(!this.props.bought) {
+        return null;
+      }
+
+      return (
+        <figure>  
+          <figcaption>Your CSS</figcaption>
+          <code>
+            <pre>
+              .App {"\u007B"} 
+                <br />
+                &nbsp;&nbsp;display: flex
+                <br />
+              {"\u007D"}); 
+            </pre>  
+            </code>
+        </figure>
+      )
+
     }
   }
 

@@ -6,24 +6,30 @@ class CodeDisplay extends Component {
         return null;
       }
 
+      let increaseScoreCodeString = (() => {
+        // score += 1;
+      }).toString();
+
       let increaseScoreCode = `  score += ${this.props.clickBase};`;
-      if (this.props.loopBought) {
-        increaseScoreCode = ` for ( i = 0; i < 10; i++) \u007B \n     score += ${this.props.clickBase}; \n  \u007D;`
+
+      if (this.props.loopBought || true) {
+        increaseScoreCodeString = (() => {
+          for (let i = 0; i < 10; i++) {
+            // score += this.props.clickBase;
+          }
+        }).toString();
       }
-      return(
-        <div>
-        <figure>
-        <figcaption>Your clicks</figcaption>
-          <code>
-          <pre>
-            increaseScore(() => {"\u007B"} <br/> {increaseScoreCode} <br/>{"\u007D"});
-            </pre>
-          </code>
-        </figure>
-        <CodeDisplayTimer timerBought={this.props.timerBought} timerBase={this.props.timerBase} timerInterval={this.props.timerInterval} />
-        <CSSDisplay bought={this.props.cssBought} />
-        </div>
-        )
+
+      return <div>
+          <figure>
+            <figcaption>Your clicks</figcaption>
+            <code>
+              <pre>{increaseScoreCodeString}</pre>
+            </code>
+          </figure>
+          <CodeDisplayTimer timerBought={this.props.timerBought} timerBase={this.props.timerBase} timerInterval={this.props.timerInterval} />
+          <CSSDisplay bought={this.props.cssBought} />
+        </div>;
     }
   }
 

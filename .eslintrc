@@ -1,0 +1,40 @@
+{
+  "parserOptions": {
+      "sourceType": "module"
+    },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "extends": ["plugin:react/recommended"],
+  "rules": {
+    "semi": 1,
+    "no-extra-semi": 1,
+    "comma-dangle": 1,
+    "keyword-spacing": 1,
+    "space-before-blocks": 1,
+    "space-infix-ops": 1,
+    "no-redeclare": 1,
+    "no-shadow": 1,
+    "no-undef": 2,
+    "no-unused-vars": 1,
+    "prefer-const": 1,
+    "no-var": 1,
+    "no-const-assign": 1,
+    "no-undefined": 1,
+    "prefer-template": 1,
+    "object-shorthand": 1,
+    "prefer-arrow-callback": 1,
+    "arrow-spacing": 1,
+    "arrow-body-style": [1, "as-needed"],
+    "no-case-declarations": 1,
+    "no-dupe-class-members": 2,
+    "react/no-did-mount-set-state": 0,
+    "react/prop-types": 0
+  }
+}

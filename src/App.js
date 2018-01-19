@@ -91,21 +91,21 @@ class App extends Component {
     }
 
     if (upgrade === 'improveClicks1') {
-      this.setState({clickBase: 5}, this.save);
+      this.setState({clickBase: 5}, this.save());
     }
 
     if (upgrade === 'improveTimer1') {
-      this.setState({timerBase: 10}, this.save);
+      this.setState({timerBase: 10}, this.save());
     }
 
     if (upgrade === 'loop') {
-      this.setState({loopbase: 10}, this.save);
+      this.setState({loopbase: 10}, this.save());
     }
 
     this.setState((prevState) => ({
       score : prevState.score - cost,
       [upgrade]: true
-    }), this.save);
+    }), this.save());
   }
 
   save = () => {
@@ -118,14 +118,14 @@ class App extends Component {
     e.preventDefault();
     this.setState((prevState) => ({
       score: prevState.score + (prevState.clickBase * prevState.loopbase)
-    }), this.save);
+    }), this.save());
   }
 
   timerOn = () => {
     setInterval(() => {
       this.setState((prevState) => ({
         score: prevState.score + prevState.timerBase
-      }), this.save);
+      }), this.save());
     }, this.state.timerInterval);
   }
 }
